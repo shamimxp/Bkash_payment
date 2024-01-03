@@ -157,10 +157,10 @@ Route::get('/bkash/pay', [BkashPaymentController::class, 'payment'])->name('url-
 Route::post('/bkash/create', [BkashPaymentController::class, 'createPayment'])->name('url-create');
 Route::get('/bkash/callback', [BkashPaymentController::class, 'callback'])->name('url-callback');
 
-// Checkout (URL) Admin Part
-Route::get('/bkash/refund', [BkashPaymentController::class, 'getRefund'])->name('url-get-refund');
-Route::post('/bkash/refund', [BkashPaymentController::class, 'refundPayment'])->name('url-post-refund');
-
+//// Checkout (URL) Admin Part
+//Route::get('/bkash/refund', [BkashPaymentController::class, 'getRefund'])->name('url-get-refund');
+//Route::post('/bkash/refund', [BkashPaymentController::class, 'refundPayment'])->name('url-post-refund');
+//
 
 
 // SSLCOMMERZ Start

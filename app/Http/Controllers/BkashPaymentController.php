@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class BkashPaymentController extends Controller
-{ private $base_url;
+{
+    private $base_url;
 
     public function __construct()
     {
@@ -47,11 +48,11 @@ class BkashPaymentController extends Controller
         );
         $header_data_json=json_encode($header);
 
-        $body_data = array('app_key'=> env('BKASH_APP_KEY'), 'app_secret'=>env('BKASH_APP_SECRET'));
+        $body_data = array('app_key'=> 'vVqOy3mlmZE01dFj0MbuOhnUtc', 'app_secret'=> '6BM87zbQGVZgDcSlIxRol0YNrThA4PSxfTBCzbVxdMgklv9f1ybR');
         $body_data_json=json_encode($body_data);
 
-        $response = $this->curlWithBody('/tokenized/checkout/token/grant',$header,'POST',$body_data_json);
 
+        $response = $this->curlWithBody('/tokenized/checkout/token/grant',$header,'POST',$body_data_json);
         $token = json_decode($response)->id_token;
 
         return $token;
@@ -83,6 +84,7 @@ class BkashPaymentController extends Controller
             'merchantInvoiceNumber' => "Inv".Str::random(8)
         );
         $body_data_json=json_encode($body_data);
+
 
         $response = $this->curlWithBody('/tokenized/checkout/create',$header,'POST',$body_data_json);
         return redirect((json_decode($response)->bkashURL));
@@ -166,6 +168,7 @@ class BkashPaymentController extends Controller
                     'response' => $query
                 ]);
             }
+
 
             return view('Bkash.success')->with([
                 'response' => $res_array['trxID']
